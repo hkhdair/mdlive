@@ -44,6 +44,15 @@ mdlive README.md --serve --port 3000
 - Python 3.8+
 - `pip install markdown weasyprint` (auto-installed with `pip install`)
 
+> **Debian/Ubuntu users:** If you get `externally-managed-environment`, use:
+> ```bash
+> pip install --break-system-packages git+https://github.com/hkhdair/mdlive.git
+> ```
+> Or use `pipx`:
+> ```bash
+> pipx install git+https://github.com/hkhdair/mdlive.git
+> ```
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
