@@ -53,6 +53,49 @@ mdlive README.md --serve --port 3000
 > pipx install git+https://github.com/hkhdair/mdlive.git
 > ```
 
+## Hermes Agent Skill
+
+This repo includes a `SKILL.md` — a reusable skill for [Hermes Agent](https://hermes-agent.nousresearch.com/docs) that teaches it how to use `mdlive` automatically.
+
+### What it does
+
+When the skill is installed, Hermes will automatically use `mdlive` whenever you ask it to:
+
+- Convert Markdown to HTML or PDF
+- Start a live preview of a Markdown file
+- Generate styled documents from Markdown
+
+No need to remember command flags — just say *"convert this to a PDF"* and Hermes handles it.
+
+### How to install
+
+```bash
+# Copy the skill into Hermes' skills directory
+mkdir -p ~/.hermes/skills/productivity/mdlive
+cp SKILL.md ~/.hermes/skills/productivity/mdlive/
+```
+
+Or clone the whole repo and symlink:
+
+```bash
+git clone https://github.com/hkhdair/mdlive.git
+ln -s "$(pwd)/mdlive/SKILL.md" ~/.hermes/skills/productivity/mdlive/SKILL.md
+```
+
+### When it triggers
+
+Hermes auto-loads the skill when your request involves any of these:
+
+| You say... | Hermes does... |
+|---|---|
+| *"Convert this to HTML"* | `mdlive file.md -o file.html` |
+| *"Make a PDF from this README"* | `mdlive README.md --pdf output.pdf` |
+| *"Start a live preview"* | `mdlive file.md --serve` |
+| *"I want light theme"* | Adds `--light` flag |
+| *"Use port 3000"* | Adds `--port 3000` |
+
+The skill also knows about pitfalls (missing WeasyPrint system deps, port conflicts) and will fix them proactively rather than failing silently.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
